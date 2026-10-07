@@ -1,0 +1,55 @@
+1
+00:00:00,600 --> 00:00:02,730
+Welcome to your Drive practice.
+
+2
+00:00:02,730 --> 00:00:08,320
+This is a brand-new account. It starts empty, and nothing you do here is saved.
+
+3
+00:00:08,320 --> 00:00:16,380
+Everything begins with the New button. Create a folder, give it a name, and it appears in My Drive.
+
+4
+00:00:16,380 --> 00:00:24,110
+To upload, drag files from your computer onto the page, or choose File upload from the New menu.
+
+5
+00:00:24,260 --> 00:00:30,760
+Drag a file onto a folder to move it. Changed your mind? Choose Undo.
+
+6
+00:00:30,760 --> 00:00:36,310
+Double-click a folder to open it. The path at the top shows where you are.
+
+7
+00:00:36,440 --> 00:00:44,380
+Right-click any item for more options: rename it, share it, star it, or move it.
+
+8
+00:00:44,400 --> 00:00:54,020
+Sharing is practice too. Add an email address, choose a role, and send. No email ever leaves this page.
+
+9
+00:00:54,020 --> 00:01:02,560
+The New button also creates Google Docs, Sheets and Slides. They open in a simple practice editor.
+
+10
+00:01:03,940 --> 00:01:09,810
+Use search to find anything by name, then filter the results by type.
+
+11
+00:01:10,920 --> 00:01:17,120
+Deleted items go to Trash. From there, you can restore them, or delete them forever.
+
+12
+00:01:19,670 --> 00:01:25,650
+Practice tasks tracks what you have tried. It shows progress, not a score.
+
+13
+00:01:25,650 --> 00:01:31,010
+Reload the page at any time to start again with a fresh, empty account.
+
+14
+00:01:31,380 --> 00:01:34,010
+Your turn — Begin Practice.

@@ -1,0 +1,184 @@
+/* intro.css — the Miva opener (house spec: docs/OPENER.md) and the walkthrough player.
+ * Both use the navy-and-amber practice layer so they never read as part of the Drive interface.
+ */
+.intro, .wt {
+  --navy: #09314F;
+  --amber: #EE9B01;
+  --brown: #472E00;
+  --cream: #FCEBCC;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: 'Afacad', 'Google Sans', system-ui, sans-serif;
+  --font-body: 'Google Sans', 'Roboto', 'Roboto Local', Arial, sans-serif;
+  font-family: var(--font-body);
+}
+
+/* ==========================================================
+   OPENER — the three logos arrive one at a time, then line up
+   ========================================================== */
+.intro {
+  position: fixed; inset: 0; z-index: 2000;
+  display: grid; place-items: center;
+  padding: 24px; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, #0C3F66 0%, var(--navy) 52%, #06243C 100%);
+  color: #fff;
+  transition: opacity 650ms var(--ease);
+}
+.intro.out { opacity: 0; pointer-events: none; }
+.intro.gone { display: none; }
+
+/* Brand motif: the chevron, oversized and low-contrast, as on the deck cover */
+.intro-motif {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  opacity: 0; transition: opacity 1600ms var(--ease);
+}
+.intro-motif::before {
+  content: "";
+  position: absolute; top: 50%; right: -14%;
+  width: min(980px, 105vh); aspect-ratio: 1;
+  transform: translateY(-50%);
+  background: url("../assets/logos/chevrons.svg") center / contain no-repeat;
+}
+.intro.st-line .intro-motif { opacity: 0.7; }
+
+.intro-inner { position: relative; display: grid; justify-items: center; text-align: center; max-width: 100%; }
+
+/* The row slides so that whichever logos have arrived stay centred on screen.
+   position: relative makes the row the logos' offsetParent, so centreOn()
+   measures every logo in the row's own coordinates. */
+.intro-logos {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(24px, 4.2vw, 46px);
+  transform: translateX(var(--shift, 0));
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.intro-logo {
+  display: block;
+  opacity: 0;
+  transform: scale(1.1);
+  filter: blur(8px);
+  transition:
+    opacity 700ms var(--ease),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms var(--ease);
+}
+.intro-logo img { display: block; height: auto; }
+.lg-ekiti img { width: clamp(46px, 7vw, 74px); }
+.lg-miva img  { width: clamp(96px, 15vw, 164px); }
+.lg-tof img   { width: clamp(70px, 11vw, 118px); }
+.intro-logo.in { opacity: 1; filter: blur(0); }
+.intro-logo.set { transform: scale(1); }
+
+.intro-rule {
+  width: 1px; height: clamp(30px, 5vw, 52px);
+  background: rgba(255, 255, 255, 0.34);
+  opacity: 0; transform: scaleY(0.4);
+  transition: opacity 600ms var(--ease), transform 700ms var(--ease);
+}
+.intro.st-line .intro-rule { opacity: 1; transform: scaleY(1); }
+
+.intro-tagline {
+  margin: clamp(26px, 4vh, 40px) 0 0;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+.intro.st-line .intro-tagline { opacity: 0.85; transform: none; }
+
+.intro-title {
+  margin: clamp(14px, 2.2vh, 22px) 0 0;
+  font-family: var(--font-display); font-weight: 650;
+  font-size: clamp(40px, 6.4vw, 72px); line-height: 1;
+  color: #fff; text-transform: uppercase; letter-spacing: -0.025em;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 800ms var(--ease), transform 900ms var(--ease);
+}
+.intro-title .accent { color: var(--amber); }
+.intro-sub {
+  margin: 16px 0 0; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(214, 228, 250, 0.72);
+  opacity: 0; transition: opacity 800ms var(--ease);
+}
+.intro.st-title .intro-title { opacity: 1; transform: none; }
+.intro.st-title .intro-sub { opacity: 1; transition-delay: 200ms; }
+
+/* On the navy ground amber is the action colour, with brown text for contrast */
+.amber-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 26px; border: 0; border-radius: 999px;
+  background: var(--amber); color: var(--brown);
+  font: 700 16px/1 var(--font-body); cursor: pointer; white-space: nowrap;
+  transition: transform 200ms var(--ease), background 200ms var(--ease);
+}
+.amber-cta:hover { background: #FFB01F; transform: translateY(-2px); }
+.amber-cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.amber-cta .ms { font-size: 20px; }
+.intro-begin {
+  margin-top: clamp(30px, 4.4vh, 46px);
+  opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease), background 200ms var(--ease);
+}
+.intro.st-begin .intro-begin { opacity: 1; transform: none; pointer-events: auto; }
+
+.intro-skip {
+  position: absolute; right: 24px; bottom: max(24px, env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 44px; padding: 0 16px; border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24); background: transparent;
+  color: rgba(214, 228, 250, 0.8); font: 600 14px var(--font-body); cursor: pointer;
+  transition: opacity 300ms var(--ease), color 200ms var(--ease);
+}
+.intro-skip:hover { color: #fff; }
+.intro-skip kbd {
+  font: 500 11px var(--font-body); padding: 2px 6px; border-radius: 6px; margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28); color: rgba(214, 228, 250, 0.7); background: transparent;
+}
+.intro.st-begin .intro-skip { opacity: 0; pointer-events: none; }
+
+/* ==========================================================
+   WALKTHROUGH PLAYER
+   ========================================================== */
+.wt {
+  position: fixed; inset: 0; z-index: 1900;
+  display: grid; place-items: center; padding: 24px;
+  background: rgba(6, 36, 60, 0.82);
+  opacity: 0; transition: opacity 400ms var(--ease);
+}
+.wt.in { opacity: 1; }
+.wt-card {
+  width: min(1100px, 100%, calc((100vh - 140px) * 16 / 9));
+  background: #0B2A45; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); color: #fff;
+}
+.wt-top { display: flex; align-items: center; gap: 14px; padding: 12px 12px 12px 20px; }
+.wt-top img { height: 26px; width: auto; display: block; }
+.wt-title { flex: 1; font-weight: 500; font-size: 16px; color: rgba(214, 228, 250, 0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wt-btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px;
+  border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.28); background: transparent;
+  color: #fff; font: 500 14px var(--font-body); cursor: pointer; white-space: nowrap;
+}
+.wt-btn:hover { background: rgba(255, 255, 255, 0.08); }
+.wt-btn:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.wt-btn .ms { font-size: 18px; }
+.wt-frame { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.wt-frame video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #000; }
+.wt-frame video::cue { font-family: var(--font-body); background: rgba(0, 0, 0, 0.78); }
+/* A real button laid exactly over the one drawn on the video's end card */
+.wt-go { position: absolute; left: 50%; top: 57.2%; transform: translate(-50%, -50%); }
+.wt-unmute { position: absolute; left: 16px; top: 16px; background: rgba(0, 0, 0, 0.6); }
+.wt-missing { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: rgba(214, 228, 250, 0.9); }
+.wt-missing p { max-width: 420px; margin: 0 0 18px; }
+
+@media (max-width: 600px) {
+  .wt { padding: 8px; }
+  .wt-top { padding: 8px 8px 8px 14px; gap: 8px; }
+  .wt-top img { height: 20px; }
+  .wt-title { font-size: 14px; }
+  .wt-go { top: 60%; min-height: 36px; padding: 0 16px; font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro, .intro *, .wt { transition: none !important; }
+}

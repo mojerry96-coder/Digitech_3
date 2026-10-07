@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drive – Practice</title>
+  <meta name="description" content="A practice simulation of Drive in its first-day state. Nothing you do here is saved.">
+  <link rel="icon" href="assets/icons/product/drive.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block">
+  <link rel="stylesheet" href="css/drive.css">
+  <link rel="stylesheet" href="css/intro.css">
+</head>
+<body>
+  <!-- ============ OPENER (house spec: docs/OPENER.md) ============ -->
+  <div id="intro" class="intro" role="dialog" aria-modal="true" aria-label="The Drive Practice">
+    <div class="intro-motif" aria-hidden="true"></div>
+    <div class="intro-inner">
+      <div class="intro-logos">
+        <span class="intro-logo lg-ekiti"><img src="assets/logos/ekiti.svg" alt="Government of Ekiti State, Nigeria"></span>
+        <span class="intro-rule" aria-hidden="true"></span>
+        <span class="intro-logo lg-miva"><img src="assets/logos/miva.svg" alt="MIVA Open University"></span>
+        <span class="intro-rule" aria-hidden="true"></span>
+        <span class="intro-logo lg-tof"><img src="assets/logos/tof.svg" alt="Tunji Olowolafe Foundation"></span>
+      </div>
+      <p class="intro-tagline">Study. Anywhere. Anyone. Anytime.</p>
+      <h1 class="intro-title">The <span class="accent">Drive</span> Practice</h1>
+      <p class="intro-sub">DT01 · Unit DT 01 04</p>
+      <button class="amber-cta intro-begin" type="button">Begin <span class="ms" aria-hidden="true">arrow_forward</span></button>
+    </div>
+    <button class="intro-skip" type="button">Skip <kbd>Esc</kbd></button>
+  </div>
+
+  <div class="app" id="app">
+    <!-- Top bar -->
+    <header class="topbar">
+      <button class="icon-btn hamburger" id="btn-menu" type="button" data-tip="Main menu" aria-label="Main menu"><span class="ms" aria-hidden="true">menu</span></button>
+      <a class="brand" id="brand" href="#home" aria-label="Drive home">
+        <img class="logo" src="assets/icons/product/drive.png" alt="">
+        <span class="wordmark">Drive</span>
+      </a>
+      <div class="search-wrap" id="search-wrap">
+        <form class="search" id="search-form" role="search" autocomplete="off">
+          <button class="icon-btn" type="submit" data-tip="Search" aria-label="Search"><span class="ms" aria-hidden="true">search</span></button>
+          <input id="search-input" type="text" placeholder="Search in Drive" aria-label="Search in Drive" spellcheck="false">
+          <button class="icon-btn" type="button" id="search-clear" data-tip="Clear search" aria-label="Clear search" hidden><span class="ms" aria-hidden="true">close</span></button>
+          <button class="icon-btn hide-sm" type="button" id="btn-adv" data-tip="Advanced search" aria-label="Advanced search"><span class="ms" aria-hidden="true">tune</span></button>
+        </form>
+        <div class="search-dd" id="search-dd" role="listbox" aria-label="Search suggestions" hidden></div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn hide-md" id="btn-offline" type="button" data-tip="Ready for offline" aria-label="Ready for offline"><span class="ms" aria-hidden="true">offline_pin</span></button>
+        <button class="icon-btn" id="btn-support" type="button" data-tip="Support" aria-label="Support" aria-haspopup="menu"><span class="ms" aria-hidden="true">help</span></button>
+        <button class="icon-btn" id="btn-settings" type="button" data-tip="Settings" aria-label="Settings" aria-haspopup="menu"><span class="ms" aria-hidden="true">settings</span></button>
+        <button class="icon-btn hide-md" id="btn-ai" type="button" data-tip="AI assistant" aria-label="AI assistant"><span class="ms" aria-hidden="true">auto_awesome</span></button>
+        <button class="btn-upgrade hide-md" id="btn-upgrade" type="button">Upgrade</button>
+        <button class="icon-btn hide-sm" id="btn-apps" type="button" data-tip="Apps" aria-label="Apps" aria-haspopup="dialog"><span class="ms" aria-hidden="true">apps</span></button>
+        <button class="avatar-btn" id="btn-avatar" type="button" aria-haspopup="dialog"><span class="avatar" id="avatar"></span></button>
+      </div>
+    </header>
+
+    <div class="body">
+      <!-- Sidebar -->
+      <nav class="sidebar" id="sidebar" aria-label="Drive">
+        <div class="new-wrap">
+          <button class="new-btn" id="btn-new" type="button" aria-haspopup="menu"><span class="ms" aria-hidden="true">add</span><span>New</span></button>
+        </div>
+        <ul class="nav" id="nav"></ul>
+        <div class="storage" id="storage"></div>
+      </nav>
+      <div class="drawer-scrim" id="drawer-scrim"></div>
+
+      <!-- Main card -->
+      <main class="main" id="main">
+        <div class="title-row" id="title-row"></div>
+        <div class="toolbar" id="toolbar"></div>
+        <div class="content" id="content" tabindex="0" aria-label="Files and folders"></div>
+        <div class="drop-overlay" id="drop-overlay" hidden>
+          <div class="drop-msg"><span class="ms" aria-hidden="true">upload</span><span>Drop files to instantly upload them to <b id="drop-name">My Drive</b></span></div>
+        </div>
+      </main>
+
+      <!-- Details panel -->
+      <aside class="details" id="details" aria-label="Details" hidden></aside>
+
+      <!-- Right rail -->
+      <aside class="rail" id="rail" aria-label="Side panel">
+        <button class="rail-btn" type="button" data-app="Calendar" data-tip="Calendar" aria-label="Calendar"><img src="assets/icons/product/calendar.png" width="20" height="20" alt=""></button>
+        <button class="rail-btn" type="button" data-app="Keep" data-tip="Keep" aria-label="Keep"><img src="assets/icons/product/keep.png" width="20" height="20" alt=""></button>
+        <button class="rail-btn" type="button" data-app="Tasks" data-tip="Tasks" aria-label="Tasks"><img src="assets/icons/product/tasks.png" width="20" height="20" alt=""></button>
+        <button class="rail-btn" type="button" data-app="Contacts" data-tip="Contacts" aria-label="Contacts"><img src="assets/icons/product/contacts.png" width="20" height="20" alt=""></button>
+        <div class="rail-sep"></div>
+        <button class="rail-btn" type="button" data-app="Add-ons" data-tip="Get Add-ons" aria-label="Get Add-ons"><span class="ms" aria-hidden="true">add</span></button>
+        <div class="rail-spacer"></div>
+        <button class="rail-btn" type="button" id="rail-hide" data-tip="Hide side panel" aria-label="Hide side panel"><span class="ms" aria-hidden="true">chevron_right</span></button>
+      </aside>
+    </div>
+  </div>
+
+  <button class="rail-show" id="rail-show" type="button" data-tip="Show side panel" aria-label="Show side panel" hidden><span class="ms" aria-hidden="true">chevron_left</span></button>
+  <input type="file" id="file-input" multiple hidden>
+  <input type="file" id="folder-input" webkitdirectory directory multiple hidden>
+  <div class="upload-tray" id="upload-tray" role="region" aria-label="Uploads" hidden></div>
+  <div id="layer"></div>
+
+  <!-- Load order matters: config → icons → store → ui → app → tutor, then the walkthrough player and opener -->
+  <script src="js/config.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/tutor.js"></script>
+  <script src="walkthrough/captions.js"></script>
+  <script src="js/walkthrough.js"></script>
+  <script src="js/intro.js"></script>
+</body>
+</html>

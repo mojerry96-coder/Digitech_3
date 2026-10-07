@@ -1,0 +1,13 @@
+# macOS / editor
+.DS_Store
+.claude/
+
+# Video pipeline working files (recreated by video/record.mjs → finish.py)
+video/shots/
+video/*.mp4
+video/mix.wav
+video/timeline.json
+video/sched.json
+video/cues.json
+video/paced-cues.json
+video/pace-filter.txt

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="none" aria-hidden="true">
+  <!-- The MIVA chevron, enlarged as a background motif (as on the brand cover) -->
+  <g stroke="#0E4571" stroke-width="96" stroke-linejoin="miter" fill="none">
+    <path d="M-40 40 L300 400 L640 40" opacity="0.85"/>
+    <path d="M-40 230 L300 590 L640 230" opacity="0.55"/>
+    <path d="M-40 420 L300 780 L640 420" opacity="0.3"/>
+  </g>
+</svg>
